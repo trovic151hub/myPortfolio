@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const tabs = ["Frontend", "Backend", "Services & Tools"];
 
@@ -35,24 +36,64 @@ const tabDescriptions = {
   "Services & Tools": "Leveraging industry-standard tools and cloud services to streamline development and deployment.",
 };
 
-function SkillBar({ name, icon, level, animate }) {
+function SkillBar({ name, icon, level, animate, index }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "14px", padding: "12px 0", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={animate ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "14px",
+        padding: "12px 0",
+        borderBottom: "1px solid rgba(255,255,255,0.04)",
+      }}
+    >
       <img src={icon} alt={name} style={{ width: "22px", height: "22px", objectFit: "contain", flexShrink: 0 }} />
-      <span style={{ color: "#cbd5e1", fontSize: "0.9rem", fontWeight: 500, minWidth: "120px" }}>{name}</span>
-      <div style={{ flex: 1, background: "rgba(255,255,255,0.05)", borderRadius: "99px", height: "6px", overflow: "hidden" }}>
-        <div
+      <span
+        style={{
+          color: "#cbd5e1",
+          fontSize: "0.9rem",
+          fontWeight: 500,
+          minWidth: "120px",
+        }}
+      >
+        {name}
+      </span>
+      <div
+        style={{
+          flex: 1,
+          background: "rgba(255,255,255,0.05)",
+          borderRadius: "99px",
+          height: "6px",
+          overflow: "hidden",
+        }}
+      >
+        <motion.div
+          initial={{ width: 0 }}
+          animate={animate ? { width: `${level}%` } : { width: 0 }}
+          transition={{ duration: 1.2, delay: index * 0.08 + 0.1, ease: [0.4, 0, 0.2, 1] }}
           style={{
             height: "100%",
-            width: animate ? `${level}%` : "0%",
             background: "linear-gradient(90deg, #00ff88, #00cc6a)",
             borderRadius: "99px",
-            transition: "width 1.2s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
       </div>
-      <span style={{ color: "#00ff88", fontSize: "0.8rem", fontWeight: 700, minWidth: "36px", textAlign: "right" }}>{level}%</span>
-    </div>
+      <span
+        style={{
+          color: "#00ff88",
+          fontSize: "0.8rem",
+          fontWeight: 700,
+          minWidth: "36px",
+          textAlign: "right",
+          fontFamily: "'Space Mono', monospace",
+        }}
+      >
+        {level}%
+      </span>
+    </motion.div>
   );
 }
 
@@ -60,15 +101,11 @@ function Expertise() {
   const [activeTab, setActiveTab] = useState("Frontend");
   const [animate, setAnimate] = useState(false);
   const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setAnimate(true); },
-      { threshold: 0.2 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+    if (inView) setAnimate(true);
+  }, [inView]);
 
   useEffect(() => {
     setAnimate(false);
@@ -92,18 +129,57 @@ function Expertise() {
       />
 
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px", position: "relative" }}>
-        <p style={{ color: "#00ff88", fontFamily: "monospace", fontSize: "0.875rem", letterSpacing: "0.1em", marginBottom: "12px", fontWeight: 500 }}>
-          // EXPERTISE
-        </p>
-        <h2 style={{ color: "#ffffff", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 800, marginBottom: "40px", letterSpacing: "-0.5px" }}>
-          Technologies &amp; Services
-        </h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          style={{
+            color: "#00ff88",
+            fontFamily: "'Space Mono', monospace",
+            fontSize: "0.875rem",
+            letterSpacing: "0.1em",
+            marginBottom: "12px",
+            fontWeight: 400,
+          }}
+        >
+          {"// EXPERTISE"}
+        </motion.p>
 
-        <div style={{ display: "flex", gap: "0", marginBottom: "32px", background: "rgba(255,255,255,0.04)", borderRadius: "8px", padding: "4px", width: "fit-content" }}>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          style={{
+            color: "#ffffff",
+            fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+            fontWeight: 800,
+            marginBottom: "40px",
+            letterSpacing: "-0.5px",
+            fontFamily: "'Syne', sans-serif",
+          }}
+        >
+          Technologies &amp; Services
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{
+            display: "flex",
+            gap: "0",
+            marginBottom: "32px",
+            background: "rgba(255,255,255,0.04)",
+            borderRadius: "8px",
+            padding: "4px",
+            width: "fit-content",
+          }}
+        >
           {tabs.map((tab) => (
-            <button
+            <motion.button
               key={tab}
               onClick={() => setActiveTab(tab)}
+              whileTap={{ scale: 0.97 }}
               style={{
                 background: activeTab === tab ? "#00ff88" : "transparent",
                 color: activeTab === tab ? "#080c14" : "#94a3b8",
@@ -114,22 +190,31 @@ function Expertise() {
                 fontSize: "0.875rem",
                 cursor: "pointer",
                 transition: "all 0.2s",
-                fontFamily: "inherit",
+                fontFamily: "'Syne', sans-serif",
                 letterSpacing: "0.02em",
               }}
             >
               {tab}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        <p style={{ color: "#64748b", fontSize: "0.95rem", marginBottom: "32px", lineHeight: 1.6 }}>
-          {tabDescriptions[activeTab]}
-        </p>
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={activeTab}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            style={{ color: "#64748b", fontSize: "0.95rem", marginBottom: "32px", lineHeight: 1.6 }}
+          >
+            {tabDescriptions[activeTab]}
+          </motion.p>
+        </AnimatePresence>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 48px" }} className="skills-grid">
-          {skills[activeTab].map((skill) => (
-            <SkillBar key={skill.name} {...skill} animate={animate} />
+          {skills[activeTab].map((skill, i) => (
+            <SkillBar key={`${activeTab}-${skill.name}`} {...skill} animate={animate} index={i} />
           ))}
         </div>
       </div>

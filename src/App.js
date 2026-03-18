@@ -6,11 +6,13 @@ import Expertise from "./components/Expertise";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import CustomCursor from "./components/CustomCursor";
 import "./App.css";
 
 function App() {
   return (
     <div>
+      <CustomCursor />
       <Header />
       <Hero />
       <About />
