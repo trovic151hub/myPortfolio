@@ -112,7 +112,7 @@ function Skills() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
           >
-            <span className="section-tag expertise-tag">// EXPERTISE</span>
+            <span className="section-tag expertise-tag">{'// EXPERTISE'}</span>
             <h2 className="expertise-heading">Technologies &amp; Services</h2>
           </motion.div>
 

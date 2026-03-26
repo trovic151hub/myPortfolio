@@ -68,7 +68,7 @@ function About() {
           transition={{ duration: 0.5 }}
           className="about-tag-wrap"
         >
-          <span className="section-tag">// ABOUT</span>
+          <span className="section-tag">{'// ABOUT'}</span>
         </motion.div>
 
         <div className="about-grid">

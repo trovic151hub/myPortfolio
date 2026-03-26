@@ -28,7 +28,7 @@ function Header() {
       className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}
     >
       <div className="navbar-inner">
-        <a href="#" className="navbar-logo">
+        <a href="#home" className="navbar-logo">
           Dev<span className="logo-dot">.</span>
         </a>
 

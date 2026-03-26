@@ -15,7 +15,7 @@ function Projects() {
           className="projects-header"
         >
           <div className="projects-header-left">
-            <span className="section-tag projects-tag">// SELECTED WORKS</span>
+            <span className="section-tag projects-tag">{'// SELECTED WORKS'}</span>
             <h2 className="projects-heading">Projects built for performance</h2>
           </div>
           <p className="projects-sub">

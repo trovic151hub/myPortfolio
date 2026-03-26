@@ -49,7 +49,7 @@ function Contact() {
             className="contact-left"
           >
             <div className="contact-left-top">
-              <span className="section-tag contact-tag">// CONTACT</span>
+              <span className="section-tag contact-tag">{'// CONTACT'}</span>
               <h2 className="contact-heading">
                 Let's build something your clients instantly trust
               </h2>

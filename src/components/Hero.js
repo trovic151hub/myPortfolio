@@ -29,7 +29,7 @@ function Hero() {
           transition={{ duration: 0.5 }}
           className="hero-tag-wrap"
         >
-          <span className="section-tag">// PORTFOLIO</span>
+          <span className="section-tag">{'// PORTFOLIO'}</span>
         </motion.div>
 
         <motion.h1
