@@ -70,6 +70,7 @@
 }
 
 .hero-heading {
+  font-family: 'Syne', sans-serif;
   font-size: clamp(2.8rem, 7vw, 5rem);
   font-weight: 900;
   color: #ffffff;
@@ -84,8 +85,9 @@
 }
 
 .hero-sub {
+  font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
-  color: #777;
+  color: hsl(0, 0%, 55%);
   max-width: 560px;
   margin-bottom: 3rem;
   line-height: 1.75;
@@ -103,24 +105,24 @@
   gap: 8px;
   padding: 0 2rem;
   height: 56px;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   border-radius: 100px;
   cursor: pointer;
   text-decoration: none;
   border: none;
-  font-family: inherit;
   transition: all 0.25s ease;
   letter-spacing: 0.02em;
 }
 
 .hero-btn-primary {
-  background-color: #c9a84c;
-  color: #050505;
+  background-color: var(--primary);
+  color: #ffffff;
 }
 
 .hero-btn-primary:hover {
-  background-color: #e8c96e;
+  background-color: var(--primary-hover);
 }
 
 .hero-btn-outline {

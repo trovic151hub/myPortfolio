@@ -7,6 +7,7 @@
   padding: 24px 0;
   background: transparent;
   transition: padding 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
 }
 
 .navbar-scrolled {
@@ -27,6 +28,7 @@
 }
 
 .navbar-logo {
+  font-family: 'Syne', sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
   color: #ffffff;
@@ -35,7 +37,7 @@
 }
 
 .logo-dot {
-  color: #c9a84c;
+  color: var(--primary);
 }
 
 .navbar-nav {
@@ -54,7 +56,7 @@
 }
 
 .nav-link:hover {
-  color: #c9a84c;
+  color: #ffffff;
 }
 
 .nav-cta {
@@ -62,8 +64,8 @@
   align-items: center;
   justify-content: center;
   padding: 0.6rem 1.4rem;
-  background-color: #c9a84c;
-  color: #050505;
+  background-color: var(--primary);
+  color: #ffffff;
   font-size: 0.875rem;
   font-weight: 700;
   border-radius: 100px;
@@ -74,7 +76,7 @@
 }
 
 .nav-cta:hover {
-  background-color: #e8c96e;
+  background-color: var(--primary-hover);
 }
 
 .hamburger-btn {
@@ -88,7 +90,7 @@
 }
 
 .hamburger-btn:hover {
-  color: #c9a84c;
+  color: var(--primary);
 }
 
 .mobile-menu {

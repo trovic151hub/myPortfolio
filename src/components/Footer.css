@@ -15,6 +15,7 @@
 }
 
 .footer-logo-name {
+  font-family: 'Syne', sans-serif;
   font-size: 1.15rem;
   font-weight: 800;
   color: #ffffff;
@@ -22,12 +23,13 @@
 }
 
 .footer-logo-dot {
-  color: #c9a84c;
+  color: var(--primary);
 }
 
 .footer-copy {
+  font-family: 'Inter', sans-serif;
   font-size: 0.8rem;
-  color: #444;
+  color: hsl(0, 0%, 35%);
   text-align: center;
 }
 
@@ -47,12 +49,12 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .social-btn:hover {
-  background-color: #c9a84c;
-  color: #050505;
+  background-color: var(--primary);
+  color: #ffffff;
 }
 
 @media (min-width: 768px) {

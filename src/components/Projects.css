@@ -22,6 +22,7 @@
 }
 
 .projects-heading {
+  font-family: 'Syne', sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   color: #ffffff;
@@ -30,8 +31,9 @@
 }
 
 .projects-sub {
+  font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
-  color: #666;
+  color: hsl(0, 0%, 45%);
   max-width: 420px;
   line-height: 1.75;
 }
@@ -59,7 +61,7 @@
 }
 
 .project-row:hover .project-row-line {
-  background-color: rgba(201, 168, 76, 0.3);
+  background-color: var(--primary-border);
 }
 
 .project-row-line-active {
@@ -68,7 +70,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #c9a84c;
+  background-color: var(--primary);
   transition: width 0.7s ease;
   z-index: 2;
 }
@@ -98,17 +100,20 @@
 }
 
 .tag {
-  font-size: 0.7rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
   font-weight: 500;
   padding: 4px 12px;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: #777;
+  background-color: rgba(255, 255, 255, 0.04);
+  color: hsl(0, 0%, 50%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 100px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .project-title {
+  font-family: 'Syne', sans-serif;
   font-size: clamp(1.6rem, 4vw, 2.5rem);
   font-weight: 800;
   color: #ffffff;
@@ -118,12 +123,13 @@
 }
 
 .project-row:hover .project-title {
-  color: #c9a84c;
+  color: var(--primary);
 }
 
 .project-desc {
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  color: #666;
+  color: hsl(0, 0%, 45%);
   line-height: 1.75;
   margin-bottom: 2rem;
 }
@@ -139,6 +145,7 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
@@ -147,15 +154,15 @@
 }
 
 .project-link-primary {
-  color: #c9a84c;
+  color: var(--primary);
 }
 
 .project-link-primary:hover {
-  color: #e8c96e;
+  color: var(--primary-hover);
 }
 
 .project-link-muted {
-  color: #555;
+  color: hsl(0, 0%, 40%);
 }
 
 .project-link-muted:hover {
@@ -178,7 +185,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-color: rgba(201, 168, 76, 0.1);
+  background-color: var(--primary-subtle);
   mix-blend-mode: overlay;
   transition: background-color 0.5s ease;
 }
