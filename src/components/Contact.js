@@ -15,7 +15,7 @@ function Contact() {
   return (
     <section className="contact" id="contact">
       <div className="contact-inner">
-        <span className="section-label">// CONTACT</span>
+        <span className="section-tag">// CONTACT</span>
         <h2 className="contact-heading">
           Let's build something your clients instantly trust
         </h2>

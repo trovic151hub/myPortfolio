@@ -64,9 +64,9 @@ function Skills() {
   }, [activeTab]);
 
   return (
-    <section className="expertise" id="expertise">
+    <section className="expertise" id="skills">
       <div className="expertise-inner">
-        <span className="section-label">// EXPERTISE</span>
+        <span className="section-tag">// EXPERTISE</span>
         <h2 className="expertise-heading">Technologies &amp; Services</h2>
 
         <div className="expertise-tabs">

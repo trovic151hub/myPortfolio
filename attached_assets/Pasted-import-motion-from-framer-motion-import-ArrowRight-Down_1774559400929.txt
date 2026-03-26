@@ -1,0 +1,72 @@
+import { motion } from "framer-motion";
+import { ArrowRight, Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+export function Hero() {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#050505]">
+      <div className="absolute inset-0 z-0 opacity-20 mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }}></div>
+
+      <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:block z-0">
+        <img
+          src={`${import.meta.env.BASE_URL}images/hero-bg.png`}
+          alt="Hero Background"
+          className="w-full h-full object-cover opacity-30 grayscale hover:grayscale-0 transition-all duration-1000"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent" />
+      </div>
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start pt-20">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8"
+        >
+          <span className="section-tag">// PORTFOLIO</span>
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] leading-[1.1] font-display font-black tracking-tight mb-8 max-w-4xl"
+        >
+          Building Flexible Web<br className="hidden md:block" /> Applications
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed font-sans"
+        >
+          Modern software systems built with scalable architecture to help your business offer fast and wide service.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+        >
+          <Button
+            size="lg"
+            className="w-full sm:w-auto h-14 px-8 text-base rounded-full bg-primary text-white hover:bg-primary/90 transition-all"
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            View Work <ArrowRight className="ml-2 w-4 h-4" />
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            className="w-full sm:w-auto h-14 px-8 text-base rounded-full border-white text-white hover:bg-white/10 transition-all"
+            onClick={() => alert('Resume download simulated')}
+          >
+            <Download className="mr-2 w-4 h-4" /> Download CV
+          </Button>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

@@ -1,67 +1,98 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import "./Header.css";
 
+const NAV_LINKS = [
+  { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
+];
+
 function Header() {
-  const [active, setActive] = useState("home");
-  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
-      const sections = ["home", "about", "expertise", "work", "contact"];
-      let current = "home";
-      sections.forEach((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const top = element.offsetTop - 120;
-          if (window.scrollY >= top) current = section;
-        }
-      });
-      setActive(current);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "expertise", label: "Expertise" },
-    { id: "work", label: "Work" },
-    { id: "contact", label: "Contact" },
-  ];
-
   return (
-    <header className={`header ${scrolled ? "scrolled" : ""}`}>
-      <div className="header-inner">
-        <div className="logo">
-          <span className="logo-name">VIC.DEV</span>
-          <span className="logo-sub">Full Stack Developer</span>
-        </div>
-        <nav className={`nav ${menuOpen ? "open" : ""}`}>
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              className={active === link.id ? "active" : ""}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}
+    >
+      <div className="navbar-inner">
+        <a href="#" className="navbar-logo">
+          Dev<span className="logo-dot">.</span>
+        </a>
+
+        <nav className="navbar-nav">
+          {NAV_LINKS.map((link) => (
+            <a key={link.name} href={link.href} className="nav-link">
+              {link.name}
             </a>
           ))}
+          <a
+            href="#contact"
+            className="nav-cta"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Start a conversation
+          </a>
         </nav>
+
         <button
-          className={`hamburger ${menuOpen ? "open" : ""}`}
-          onClick={() => setMenuOpen(!menuOpen)}
+          className="hamburger-btn"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
-    </header>
+
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="mobile-menu"
+          >
+            <nav className="mobile-nav">
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="mobile-nav-link"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                className="nav-cta mobile-cta"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                Start a conversation
+              </a>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }
 
