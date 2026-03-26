@@ -1,44 +1,123 @@
 .about {
-  padding: 80px 20px;
-  background-color: #f5f5f5;
+  background-color: #0f0f14;
+  padding: 100px 40px;
+}
+
+.about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .about-container {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.about-image-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.about-avatar {
+  width: 280px;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: block;
+}
+
+.about-greeting {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  max-width: 1000px;
-  margin: 0 auto;
-  gap: 50px;
-  flex-wrap: wrap;
+  gap: 4px;
 }
 
-.about-text h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+.cursor {
+  display: inline-block;
+  color: #c9a84c;
+  font-weight: 300;
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
 }
 
-.about-text p {
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.about-role {
   font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 15px;
+  font-weight: 500;
+  color: #c9a84c;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
 }
 
-.about-image img {
-  border-radius: 10px;
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
+.about-bio {
+  font-size: 0.95rem;
+  color: #999;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #666;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 900px) {
   .about-container {
-    flex-direction: column;
-    text-align: center;
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
-  .about-image img {
-    width: 200px;
-    height: 200px;
+
+  .about-avatar {
+    width: 220px;
+    height: 260px;
+    margin: 0 auto;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .about {
+    padding: 80px 20px;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

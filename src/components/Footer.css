@@ -1,22 +1,12 @@
 .footer {
-  background-color: #222;
-  color: white;
-  padding: 30px 20px;
+  background-color: #0a0a0e;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 24px 40px;
   text-align: center;
 }
 
-.footer-links {
-  margin-top: 10px;
-}
-
-.footer-links a {
-  color: #f0c040;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #e0a020;
+.footer p {
+  font-size: 0.8rem;
+  color: #444;
+  letter-spacing: 0.03em;
 }

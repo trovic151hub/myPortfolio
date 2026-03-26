@@ -2,41 +2,64 @@ import React, { useState, useEffect } from "react";
 import "./Header.css";
 
 function Header() {
-  const [active, setActive] = useState("hero");
+  const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "about", "projects", "skills", "contact"];
-      let current = "hero";
+      setScrolled(window.scrollY > 30);
+      const sections = ["home", "about", "expertise", "work", "contact"];
+      let current = "home";
       sections.forEach((section) => {
         const element = document.getElementById(section);
         if (element) {
-          const top = element.offsetTop - 100;
+          const top = element.offsetTop - 120;
           if (window.scrollY >= top) current = section;
         }
       });
       setActive(current);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navLinks = [
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "expertise", label: "Expertise" },
+    { id: "work", label: "Work" },
+    { id: "contact", label: "Contact" },
+  ];
+
   return (
-    <header className="header">
-      <div className="logo">Victor Adeyimika</div>
-      <div className={`nav ${menuOpen ? "open" : ""}`}>
-        <a href="#hero" className={active === "hero" ? "active" : ""} onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="#about" className={active === "about" ? "active" : ""} onClick={() => setMenuOpen(false)}>About</a>
-        <a href="#projects" className={active === "projects" ? "active" : ""} onClick={() => setMenuOpen(false)}>Projects</a>
-        <a href="#skills" className={active === "skills" ? "active" : ""} onClick={() => setMenuOpen(false)}>Skills</a>
-        <a href="#contact" className={active === "contact" ? "active" : ""} onClick={() => setMenuOpen(false)}>Contact</a>
-      </div>
-      <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
-        <span></span>
-        <span></span>
-        <span></span>
+    <header className={`header ${scrolled ? "scrolled" : ""}`}>
+      <div className="header-inner">
+        <div className="logo">
+          <span className="logo-name">VIC.DEV</span>
+          <span className="logo-sub">Full Stack Developer</span>
+        </div>
+        <nav className={`nav ${menuOpen ? "open" : ""}`}>
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              className={active === link.id ? "active" : ""}
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        <button
+          className={`hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </header>
   );
