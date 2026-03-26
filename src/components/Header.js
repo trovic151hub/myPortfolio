@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import "./Header.css";
@@ -15,18 +15,13 @@ function smoothTo(id) {
 }
 
 function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuOpenRef = useRef(false);
-
-  useEffect(() => {
-    menuOpenRef.current = menuOpen;
-  }, [menuOpen]);
+  const [scrolled, setScrolled]           = useState(false);
+  const [menuOpen, setMenuOpen]           = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
-      if (menuOpenRef.current) setMenuOpen(false);
+      setMenuOpen(false);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
