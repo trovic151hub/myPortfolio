@@ -18,6 +18,13 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Solid background when mobile menu is open */
+.navbar-open {
+  background: rgba(5, 5, 5, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
 .navbar-inner {
   max-width: 1280px;
   margin: 0 auto;
