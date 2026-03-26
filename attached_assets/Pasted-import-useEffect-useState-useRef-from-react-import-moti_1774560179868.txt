@@ -1,0 +1,83 @@
+import { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
+
+const LETTERS = ["V", "I", "C", ".", "D", "E", "V"];
+const LOADER_DURATION = 2200;
+
+export function PageLoader({ onComplete }) {
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const rafRef = useRef(null);
+
+  useEffect(() => {
+    const letterInterval = setInterval(() => {
+      setVisibleCount(prev => {
+        if (prev >= LETTERS.length) {
+          clearInterval(letterInterval);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 120);
+
+    const startTime = performance.now();
+    const progressFrame = (now) => {
+      const elapsed = now - startTime;
+      const pct = Math.min((elapsed / LOADER_DURATION) * 100, 100);
+      setProgress(pct);
+      if (pct < 100) {
+        rafRef.current = requestAnimationFrame(progressFrame);
+      }
+    };
+    rafRef.current = requestAnimationFrame(progressFrame);
+
+    const exitTimer = setTimeout(onComplete, LOADER_DURATION);
+
+    return () => {
+      clearInterval(letterInterval);
+      clearTimeout(exitTimer);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [onComplete]);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050505]"
+      exit={{ y: "-100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }}
+    >
+      <div className="flex items-end gap-1 overflow-hidden">
+        {LETTERS.map((letter, i) => (
+          <motion.span
+            key={i}
+            initial={{ y: 60, opacity: 0 }}
+            animate={visibleCount > i ? { y: 0, opacity: 1 } : { y: 60, opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
+            className={`font-display font-black leading-none select-none ${
+              letter === "."
+                ? "text-5xl md:text-6xl text-primary mb-1"
+                : "text-6xl md:text-8xl text-white"
+            }`}
+          >
+            {letter}
+          </motion.span>
+        ))}
+      </div>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: visibleCount >= LETTERS.length ? 1 : 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="mt-4 text-sm font-mono-custom text-muted-foreground tracking-[0.3em] uppercase"
+      >
+        Full Stack Developer
+      </motion.p>
+
+      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white/5">
+        <motion.div
+          className="h-full bg-primary origin-left"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+    </motion.div>
+  );
+}

@@ -1,107 +1,160 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import "./Skills.css";
 
-const tabs = [
-  {
-    id: "frontend",
-    label: "Frontend",
+const SKILL_TABS = [
+  { id: "frontend", label: "Frontend" },
+  { id: "backend", label: "Backend" },
+  { id: "tools", label: "Services & Tools" },
+];
+
+const SKILL_DATA = {
+  frontend: {
     description:
       "Building responsive, accessible, and performant user interfaces with modern web technologies.",
     skills: [
-      { name: "React", icon: "https://cdn.simpleicons.org/react/61DAFB", level: 90 },
-      { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E", level: 85 },
-      { name: "TailwindCSS", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4", level: 80 },
-      { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/3178C6", level: 75 },
-      { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/FFFFFF", level: 70 },
-      { name: "HTML5", icon: "https://cdn.simpleicons.org/html5/E34F26", level: 95 },
+      { name: "React", percent: 92, icon: "https://cdn.simpleicons.org/react/61DAFB" },
+      { name: "JavaScript", percent: 95, icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+      { name: "TailwindCSS", percent: 92, icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
+      { name: "TypeScript", percent: 72, icon: "https://cdn.simpleicons.org/typescript/3178C6" },
+      { name: "Next.js", percent: 85, icon: "https://cdn.simpleicons.org/nextdotjs/FFFFFF" },
+      { name: "HTML5", percent: 98, icon: "https://cdn.simpleicons.org/html5/E34F26" },
     ],
   },
-  {
-    id: "backend",
-    label: "Backend",
+  backend: {
     description:
-      "Designing and building robust server-side applications, APIs, and database architectures.",
+      "Designing scalable APIs, robust databases, and secure server-side architectures.",
     skills: [
-      { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/339933", level: 85 },
-      { name: "Express.js", icon: "https://cdn.simpleicons.org/express/FFFFFF", level: 80 },
-      { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb/47A248", level: 75 },
-      { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql/4169E1", level: 70 },
-      { name: "Python", icon: "https://cdn.simpleicons.org/python/3776AB", level: 65 },
-      { name: "GraphQL", icon: "https://cdn.simpleicons.org/graphql/E10098", level: 60 },
+      { name: "Node.js", percent: 88, icon: "https://cdn.simpleicons.org/nodedotjs/339933" },
+      { name: "Express", percent: 85, icon: "https://cdn.simpleicons.org/express/FFFFFF" },
+      { name: "PostgreSQL", percent: 78, icon: "https://cdn.simpleicons.org/postgresql/4169E1" },
+      { name: "MongoDB", percent: 75, icon: "https://cdn.simpleicons.org/mongodb/47A248" },
+      { name: "REST APIs", percent: 90, icon: null },
+      { name: "GraphQL", percent: 70, icon: "https://cdn.simpleicons.org/graphql/E10098" },
     ],
   },
-  {
-    id: "tools",
-    label: "Services & Tools",
+  tools: {
     description:
-      "Leveraging industry-standard tools and platforms to build, ship, and maintain production-grade software.",
+      "Streamlining development workflows with modern DevOps, version control, and design tools.",
     skills: [
-      { name: "Git", icon: "https://cdn.simpleicons.org/git/F05032", level: 90 },
-      { name: "Docker", icon: "https://cdn.simpleicons.org/docker/2496ED", level: 70 },
-      { name: "AWS", icon: "https://cdn.simpleicons.org/amazonwebservices/FF9900", level: 65 },
-      { name: "Figma", icon: "https://cdn.simpleicons.org/figma/F24E1E", level: 75 },
-      { name: "Linux", icon: "https://cdn.simpleicons.org/linux/FCC624", level: 70 },
-      { name: "Postman", icon: "https://cdn.simpleicons.org/postman/FF6C37", level: 80 },
+      { name: "Git", percent: 90, icon: "https://cdn.simpleicons.org/git/F05032" },
+      { name: "Docker", percent: 72, icon: "https://cdn.simpleicons.org/docker/2496ED" },
+      { name: "Figma", percent: 80, icon: "https://cdn.simpleicons.org/figma/F24E1E" },
+      { name: "AWS", percent: 65, icon: "https://cdn.simpleicons.org/amazonaws/FF9900" },
+      { name: "Vercel", percent: 88, icon: "https://cdn.simpleicons.org/vercel/FFFFFF" },
+      { name: "VS Code", percent: 95, icon: "https://cdn.simpleicons.org/visualstudiocode/007ACC" },
     ],
   },
-];
+};
+
+function SkillBar({ skill, index }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false, margin: "-60px" });
+  const [count, setCount] = useState(0);
+  const rafRef = useRef(null);
+
+  useEffect(() => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    if (!inView) { setCount(0); return; }
+
+    const duration = 1000 + index * 80;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * skill.percent));
+      if (progress < 1) rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+  }, [inView, skill.percent, index]);
+
+  return (
+    <div ref={ref} className="skill-bar-item">
+      <div className="skill-bar-header">
+        <div className="skill-bar-left">
+          {skill.icon ? (
+            <img src={skill.icon} alt={skill.name} className="skill-icon" />
+          ) : (
+            <div className="skill-icon-placeholder">
+              <div className="skill-icon-dot"></div>
+            </div>
+          )}
+          <span className="skill-name">{skill.name}</span>
+        </div>
+        <span className="skill-percent">{count}%</span>
+      </div>
+      <div className="skill-track">
+        <motion.div
+          className="skill-fill"
+          initial={{ width: 0 }}
+          animate={{ width: inView ? `${skill.percent}%` : "0%" }}
+          transition={{ duration: 1 + index * 0.08, ease: "easeOut" }}
+        />
+      </div>
+    </div>
+  );
+}
 
 function Skills() {
   const [activeTab, setActiveTab] = useState("frontend");
-  const barRefs = useRef([]);
-
-  const currentTab = tabs.find((t) => t.id === activeTab);
-
-  useEffect(() => {
-    barRefs.current.forEach((el) => {
-      if (el) {
-        el.style.width = "0%";
-        setTimeout(() => {
-          el.style.width = el.dataset.level + "%";
-        }, 100);
-      }
-    });
-  }, [activeTab]);
 
   return (
-    <section className="expertise" id="skills">
+    <section id="skills" className="expertise">
       <div className="expertise-inner">
-        <span className="section-tag">// EXPERTISE</span>
-        <h2 className="expertise-heading">Technologies &amp; Services</h2>
+        <div className="expertise-top">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="section-tag expertise-tag">// EXPERTISE</span>
+            <h2 className="expertise-heading">Technologies &amp; Services</h2>
+          </motion.div>
 
-        <div className="expertise-tabs">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              className={`tab-btn ${activeTab === tab.id ? "active" : ""}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="expertise-tabs"
+          >
+            {SKILL_TABS.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`tab-btn ${activeTab === tab.id ? "active" : ""}`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </motion.div>
         </div>
 
-        <p className="expertise-desc">{currentTab.description}</p>
-
-        <div className="expertise-grid">
-          {currentTab.skills.map((skill, index) => (
-            <div className="skill-item" key={skill.name}>
-              <div className="skill-header">
-                <div className="skill-info">
-                  <img src={skill.icon} alt={skill.name} className="skill-icon" />
-                  <span className="skill-name">{skill.name}</span>
-                </div>
-                <span className="skill-percent">{skill.level}%</span>
+        <div className="expertise-body">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="expertise-content"
+            >
+              <div className="expertise-desc-col">
+                <p className="expertise-desc">{SKILL_DATA[activeTab].description}</p>
               </div>
-              <div className="skill-track">
-                <div
-                  className="skill-bar"
-                  data-level={skill.level}
-                  ref={(el) => (barRefs.current[index] = el)}
-                ></div>
+              <div className="expertise-skills-col">
+                {SKILL_DATA[activeTab].skills.map((skill, index) => (
+                  <SkillBar key={skill.name} skill={skill} index={index} />
+                ))}
               </div>
-            </div>
-          ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

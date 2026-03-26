@@ -1,0 +1,39 @@
+import { MOCK_DATA } from "@/lib/data";
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+
+export function Footer() {
+  return (
+    <footer className="py-8 bg-[#050505] border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+
+          <div className="flex items-center gap-1">
+            <span className="font-display font-bold text-xl tracking-tight text-foreground">
+              {MOCK_DATA.developer.displayName}<span className="text-primary">.dev</span>
+            </span>
+          </div>
+
+          <p className="text-muted-foreground text-sm font-sans">
+            &copy; {new Date().getFullYear()} {MOCK_DATA.developer.name}. All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-3">
+            <a href={MOCK_DATA.developer.socials.github} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-primary text-white transition-colors duration-300">
+              <Github className="w-4 h-4" />
+            </a>
+            <a href={MOCK_DATA.developer.socials.linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-primary text-white transition-colors duration-300">
+              <Linkedin className="w-4 h-4" />
+            </a>
+            <a href={MOCK_DATA.developer.socials.twitter} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-primary text-white transition-colors duration-300">
+              <Twitter className="w-4 h-4" />
+            </a>
+            <a href={`mailto:${MOCK_DATA.developer.socials.email}`} className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-primary text-white transition-colors duration-300">
+              <Mail className="w-4 h-4" />
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+  );
+}

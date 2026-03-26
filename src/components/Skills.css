@@ -1,82 +1,103 @@
 .expertise {
-  background-color: #0b0b0f;
-  padding: 100px 40px;
+  padding: 128px 0;
+  background-color: #050505;
 }
 
 .expertise-inner {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 0 24px;
+}
+
+.expertise-top {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.expertise-tag {
+  display: block;
+  margin-bottom: 1rem;
 }
 
 .expertise-heading {
-  font-size: 2.25rem;
-  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
   color: #ffffff;
-  margin-bottom: 2rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .expertise-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  padding-bottom: 0;
 }
 
 .tab-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
+  padding: 0.6rem 1.5rem;
+  border-radius: 100px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #666;
-  padding: 0.6rem 1.25rem;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s ease;
-  margin-bottom: -1px;
-  letter-spacing: 0.02em;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #777;
 }
 
 .tab-btn:hover {
-  color: #aaa;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
 .tab-btn.active {
-  color: #ffffff;
-  border-bottom-color: #c9a84c;
+  background-color: #c9a84c;
+  color: #050505;
+  font-weight: 700;
 }
+
+.expertise-body {
+  min-height: 400px;
+}
+
+.expertise-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.expertise-desc-col {}
 
 .expertise-desc {
-  font-size: 0.9rem;
-  color: #777;
-  margin-bottom: 2.5rem;
-  max-width: 600px;
-  line-height: 1.7;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.85;
 }
 
-.expertise-grid {
+.expertise-skills-col {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem 3rem;
+  grid-template-columns: 1fr;
+  gap: 2rem;
 }
 
-.skill-item {
+.skill-bar-item {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.75rem;
 }
 
-.skill-header {
+.skill-bar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.skill-info {
+.skill-bar-left {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.75rem;
 }
 
 .skill-icon {
@@ -86,44 +107,70 @@
   flex-shrink: 0;
 }
 
+.skill-icon-placeholder {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-icon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .skill-name {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #cccccc;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
 }
 
 .skill-percent {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: #555;
   font-family: 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
 }
 
 .skill-track {
   width: 100%;
-  height: 3px;
+  height: 4px;
   background-color: rgba(255, 255, 255, 0.07);
-  border-radius: 2px;
+  border-radius: 100px;
   overflow: hidden;
 }
 
-.skill-bar {
+.skill-fill {
   height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #c9a84c, #e8c96e);
-  border-radius: 2px;
-  transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background-color: #c9a84c;
+  border-radius: 100px;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 1024px) {
+  .expertise-top {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .expertise-content {
+    grid-template-columns: 4fr 8fr;
+    gap: 4rem;
+  }
+
+  .expertise-skills-col {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 3rem;
+  }
+}
+
+@media (max-width: 600px) {
   .expertise {
-    padding: 80px 20px;
-  }
-
-  .expertise-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .expertise-heading {
-    font-size: 1.8rem;
+    padding: 80px 0;
   }
 }
