@@ -42,6 +42,16 @@ export const MOCK_DATA = {
   projects: [
     {
       id: "1",
+      title: "Skiova - Skincare E-commerce",
+      description:
+        "A sleek skincare product e-commerce website with a clean shopping experience, product listings, and a polished UI crafted for conversions.",
+      image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&q=80",
+      tech: ["HTML", "Tailwind CSS", "JavaScript"],
+      github: "https://github.com/trovic151hub/GlowUp",
+      live: "https://skinova-glow.vercel.app/",
+    },
+    {
+      id: "2",
       title: "FinDash - Financial Dashboard",
       description:
         "A comprehensive real-time financial dashboard with complex data visualizations, transaction tracking, and predictive analytics.",
@@ -51,7 +61,7 @@ export const MOCK_DATA = {
       live: "https://example.com",
     },
     {
-      id: "2",
+      id: "3",
       title: "Lumina - E-commerce Platform",
       description:
         "High-performance headless e-commerce storefront with fluid animations, cart management, and seamless checkout flow.",
@@ -61,7 +71,7 @@ export const MOCK_DATA = {
       live: "https://example.com",
     },
     {
-      id: "3",
+      id: "4",
       title: "CollabSpace - Team Workspace",
       description:
         "Real-time collaborative workspace featuring rich text editing, presence indicators, and instant messaging.",
@@ -71,7 +81,7 @@ export const MOCK_DATA = {
       live: "https://example.com",
     },
     {
-      id: "4",
+      id: "5",
       title: "DevFlow - Developer Tools",
       description:
         "A productivity suite for developers including an API tester, regex builder, and JSON formatter.",
