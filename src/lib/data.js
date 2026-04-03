@@ -52,6 +52,16 @@ export const MOCK_DATA = {
     },
     {
       id: "2",
+      title: "Medcore - Healthcare Management Platform",
+      description:
+        "A centralized healthcare platform enabling patients and providers to manage appointments, patient records, and medical services — reducing manual processes and improving workflow efficiency.",
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      tech: ["React", "JavaScript", "Tailwind CSS", "Python"],
+      github: "https://github.com/trovic151hub/OOP",
+      live: "https://medic-core.vercel.app/",
+    },
+    {
+      id: "4",
       title: "FinDash - Financial Dashboard",
       description:
         "A comprehensive real-time financial dashboard with complex data visualizations, transaction tracking, and predictive analytics.",
@@ -61,7 +71,7 @@ export const MOCK_DATA = {
       live: "https://example.com",
     },
     {
-      id: "3",
+      id: "5",
       title: "Lumina - E-commerce Platform",
       description:
         "High-performance headless e-commerce storefront with fluid animations, cart management, and seamless checkout flow.",
@@ -71,7 +81,7 @@ export const MOCK_DATA = {
       live: "https://example.com",
     },
     {
-      id: "4",
+      id: "6",
       title: "CollabSpace - Team Workspace",
       description:
         "Real-time collaborative workspace featuring rich text editing, presence indicators, and instant messaging.",
@@ -81,7 +91,7 @@ export const MOCK_DATA = {
       live: "https://example.com",
     },
     {
-      id: "5",
+      id: "7",
       title: "DevFlow - Developer Tools",
       description:
         "A productivity suite for developers including an API tester, regex builder, and JSON formatter.",
