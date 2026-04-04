@@ -15,7 +15,7 @@ function Hero() {
 
       <div className="hero-image-panel">
         <img
-          src="https://web-dev-portfolio--victoradeyimika.replit.app/images/hero-bg.png"
+          src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80"
           alt="Hero Background"
           className="hero-bg-img"
         />
