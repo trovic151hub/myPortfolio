@@ -67,8 +67,7 @@ export const MOCK_DATA = {
         "A comprehensive real-time financial dashboard with complex data visualizations, transaction tracking, and predictive analytics.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
       tech: ["React", "TypeScript", "Recharts", "Node.js"],
-      github: "https://github.com/trovic151hub",
-      live: "https://example.com",
+      comingSoon: true,
     },
     {
       id: "5",
@@ -77,8 +76,7 @@ export const MOCK_DATA = {
         "High-performance headless e-commerce storefront with fluid animations, cart management, and seamless checkout flow.",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
       tech: ["Next.js", "Tailwind", "Stripe", "PostgreSQL"],
-      github: "https://github.com/trovic151hub",
-      live: "https://example.com",
+      comingSoon: true,
     },
     {
       id: "6",
@@ -87,8 +85,7 @@ export const MOCK_DATA = {
         "Real-time collaborative workspace featuring rich text editing, presence indicators, and instant messaging.",
       image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
       tech: ["React", "WebSockets", "Supabase", "Tailwind"],
-      github: "https://github.com/trovic151hub",
-      live: "https://example.com",
+      comingSoon: true,
     },
     {
       id: "7",
@@ -97,8 +94,7 @@ export const MOCK_DATA = {
         "A productivity suite for developers including an API tester, regex builder, and JSON formatter.",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
       tech: ["Vue", "TypeScript", "Electron", "Vite"],
-      github: "https://github.com/trovic151hub",
-      live: "https://example.com",
+      comingSoon: true,
     },
   ],
 };

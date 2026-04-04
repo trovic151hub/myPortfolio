@@ -49,22 +49,31 @@ function Projects() {
                   <p className="project-desc">{project.description}</p>
 
                   <div className="project-links">
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="project-link project-link-primary"
-                    >
-                      Live Demo <ArrowUpRight size={14} />
-                    </a>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="project-link project-link-muted"
-                    >
-                      Source Code <ArrowUpRight size={14} />
-                    </a>
+                    {project.comingSoon ? (
+                      <span className="project-coming-soon">
+                        <span className="coming-soon-dot"></span>
+                        Coming Soon
+                      </span>
+                    ) : (
+                      <>
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="project-link project-link-primary"
+                        >
+                          Live Demo <ArrowUpRight size={14} />
+                        </a>
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="project-link project-link-muted"
+                        >
+                          Source Code <ArrowUpRight size={14} />
+                        </a>
+                      </>
+                    )}
                   </div>
                 </div>
 
