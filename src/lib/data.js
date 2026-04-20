@@ -61,6 +61,16 @@ export const MOCK_DATA = {
       live: "https://medic-core.vercel.app/",
     },
     {
+      id: "3",
+      title: "TaskFlow - Todo & Task Manager",
+      description:
+        "A lightweight and responsive task management web application designed to help users organize daily activities efficiently. Features Google authentication, a minimal UI, and seamless task creation — built for speed and usability.",
+      image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80",
+      tech: ["React", "Node.js", "Tailwind CSS"],
+      github: "https://github.com/trovic151hub/todo",
+      live: "https://todo-pi-azure.vercel.app/",
+    },
+    {
       id: "4",
       title: "FinDash - Financial Dashboard",
       description:
