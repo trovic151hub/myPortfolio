@@ -11,6 +11,23 @@ const fadeUp = {
 };
 
 function Hero() {
+  const handleDownloadCV = async () => {
+    try {
+      const response = await fetch('/Ogedengbe_Victor_CV.pdf');
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Ogedengbe_Victor_CV.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch {
+      window.open('/Ogedengbe_Victor_CV.pdf', '_blank');
+    }
+  };
+
   return (
     <section
       id="hero"
@@ -74,16 +91,15 @@ function Hero() {
             >
               View Work
             </motion.a>
-            <motion.a
-              href="/Ogedengbe_Victor_CV.pdf"
-              download="Ogedengbe_Victor_CV.pdf"
+            <motion.button
+              onClick={handleDownloadCV}
               whileHover={{ y: -3, background: 'rgba(0,255,136,0.08)' }}
               whileTap={{ scale: 0.97 }}
-              className="text-brand px-8 py-[14px] rounded font-semibold text-[0.9rem] tracking-wider font-heading inline-block"
-              style={{ border: '1px solid rgba(0,255,136,0.4)' }}
+              className="text-brand px-8 py-[14px] rounded font-semibold text-[0.9rem] tracking-wider font-heading inline-block cursor-pointer"
+              style={{ border: '1px solid rgba(0,255,136,0.4)', background: 'transparent' }}
             >
               Download CV
-            </motion.a>
+            </motion.button>
           </motion.div>
         </div>
 
