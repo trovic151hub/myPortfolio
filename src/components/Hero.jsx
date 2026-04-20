@@ -75,9 +75,8 @@ function Hero() {
               View Work
             </motion.a>
             <motion.a
-              href="https://res.cloudinary.com/dut2dpxuc/image/upload/v1764266975/WhatsApp_Image_2025-11-27_at_18.56.28_4f96f79e_sa58sp.jpg"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/Ogedengbe_Victor_CV.pdf"
+              download="Ogedengbe_Victor_CV.pdf"
               whileHover={{ y: -3, background: 'rgba(0,255,136,0.08)' }}
               whileTap={{ scale: 0.97 }}
               className="text-brand px-8 py-[14px] rounded font-semibold text-[0.9rem] tracking-wider font-heading inline-block"
