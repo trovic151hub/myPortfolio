@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import { MOCK_DATA } from "../lib/data";
+import avatarImg from "../assets/avatar.jpg";
 import "./About.css";
 
 const stats = [
@@ -82,7 +83,7 @@ function About() {
             <div className="about-image-frame">
               <div className="about-image-border"></div>
               <img
-                src="https://web-dev-portfolio--victoradeyimika.replit.app/images/avatar.png"
+                src={avatarImg}
                 alt={MOCK_DATA.developer.name}
                 className="about-avatar"
               />
