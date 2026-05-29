@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const stats = [
-  { value: 3, suffix: '+', label: 'Years Exp' },
-  { value: 25, suffix: '+', label: 'Projects' },
+  { value: 2, suffix: '+', label: 'Years Exp' },
+  { value: 5, suffix: '+', label: 'Projects' },
   { value: 32, suffix: '%', label: 'Conversion Inc.' },
   { value: 24, suffix: 'h', label: 'Turnaround' },
 ];
@@ -102,7 +102,7 @@ function About() {
             variants={fadeUp} initial="hidden" animate={inView ? 'visible' : 'hidden'} custom={4}
             className="text-slate-400 text-base leading-[1.8] mb-10"
           >
-            With over 3 years of experience in building modern web applications, I specialize in the React
+            With over 2 years of experience in building modern web applications, I specialize in the React
             ecosystem and scalable frontend architectures. I'm passionate about clean code, intuitive user
             interfaces, and solving complex problems with elegant solutions. I specialize in bridging the gap
             between complex engineering and beautiful, intuitive user experiences.
