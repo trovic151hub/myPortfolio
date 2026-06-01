@@ -5,10 +5,10 @@ export const MOCK_DATA = {
     title: "Full Stack Developer",
     bio: "I build exceptional digital experiences that are fast, accessible, and visually stunning.",
     about:
-      "I'm a passionate Full Stack Developer with over 5 years of experience building modern, high-performing web applications. I love writing clean code, designing intuitive user interfaces, and solving complex problems with elegant solutions. With an eye for detail and creativity at the core of my process, I combine clean architecture, scalable backends, and immersive front-end design to create products that function flawlessly and inspire confidence. My goal is simple — turn bold ideas into powerful digital realities.",
+      "I'm a passionate Full Stack Developer with over 2 years of experience building modern, high-performing web applications. I love writing clean code, designing intuitive user interfaces, and solving complex problems with elegant solutions. With an eye for detail and creativity at the core of my process, I combine clean architecture, scalable backends, and immersive front-end design to create products that function flawlessly and inspire confidence. My goal is simple — turn bold ideas into powerful digital realities.",
     stats: [
-      { label: "Years Experience", value: "5+" },
-      { label: "Projects Completed", value: "10+" },
+      { label: "Years Experience", value: "2+" },
+      { label: "Projects Completed", value: "5+" },
       { label: "Conversion Inc.", value: "32%" },
       { label: "Turnaround", value: "24h" },
     ],
