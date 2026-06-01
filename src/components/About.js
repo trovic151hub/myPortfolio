@@ -5,8 +5,8 @@ import avatarImg from "../assets/avatar.jpg";
 import "./About.css";
 
 const stats = [
-  { target: 5,  suffix: "+", label: "Years Experience" },
-  { target: 10, suffix: "+", label: "Projects Completed" },
+  { target: 2,  suffix: "+", label: "Years Experience" },
+  { target: 5, suffix: "+", label: "Projects Completed" },
   { target: 32, suffix: "%", label: "Conversion Inc." },
   { target: 24, suffix: "h", label: "Turnaround" },
 ];
